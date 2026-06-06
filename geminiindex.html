@@ -1,0 +1,713 @@
+cat > /mnt/user-data/outputs/gemini_enterprise_beginner.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gemini Enterprise: Your AI Teammate — Beginner</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0A2E;font-family:'Comic Neue',cursive;min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  background-image:radial-gradient(ellipse at top,#1a1060,#0A0A2E);}
+.hdr{width:100%;padding:16px 20px;text-align:center;
+  background:linear-gradient(135deg,#4285F4,#0F9D58,#F4B400,#DB4437);
+  border-bottom:4px solid #fff;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.15) 1px,transparent 0);
+  background-size:8px 8px;}
+.hdr h1{font-family:'Bangers',cursive;font-size:2rem;color:#fff;letter-spacing:3px;
+  text-shadow:3px 3px 0 rgba(0,0,0,0.3);position:relative;}
+.hdr p{font-size:0.82rem;color:rgba(255,255,255,0.9);margin-top:4px;font-weight:700;position:relative;}
+.level-badge{display:inline-block;background:#fff;color:#4285F4;
+  font-family:'Bangers',cursive;font-size:1rem;letter-spacing:2px;
+  padding:3px 14px;border-radius:20px;border:2px solid #4285F4;margin-top:6px;position:relative;}
+.prog-wrap{width:100%;max-width:560px;padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.prog-bar{flex:1;height:10px;background:rgba(255,255,255,0.1);border-radius:5px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#4285F4,#0F9D58,#F4B400);border-radius:5px;transition:width 0.4s;}
+.prog-txt{font-family:'Bangers',cursive;font-size:1rem;color:#4285F4;white-space:nowrap;}
+.comic-wrap{width:100%;max-width:560px;padding:12px 16px;flex:1;}
+.book{width:100%;perspective:1400px;}
+.page{display:none;width:100%;}
+.page.active{display:block;}
+.page-inner{position:relative;width:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(0.77,0,0.175,1);}
+.page-inner.flipped{transform:rotateY(-180deg);}
+.page-front,.page-back{width:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:4px;border:4px solid #fff;box-shadow:6px 6px 0 rgba(66,133,244,0.4);overflow:hidden;}
+.page-back{position:absolute;top:0;left:0;transform:rotateY(180deg);
+  background:linear-gradient(135deg,#1a1060,#0a0a2e);
+  display:flex;align-items:center;justify-content:center;min-height:380px;}
+.comic-page{background:#FFFDF0;background-image:radial-gradient(circle,rgba(0,0,0,0.06) 1px,transparent 1px);background-size:6px 6px;}
+.ch-header{background:linear-gradient(135deg,#4285F4,#0F9D58);color:#fff;
+  font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:2px;
+  padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.ch-icon{font-size:1.5rem;}
+.panel{border-bottom:3px solid #333;padding:12px 14px;position:relative;background:#FFFDF0;min-height:80px;display:flex;flex-direction:column;gap:8px;}
+.panel:last-child{border-bottom:none;}
+.panel-blue{background:#EEF4FF;}
+.panel-green{background:#EFFFF4;}
+.panel-yellow{background:#FFFBEF;}
+.panel-red{background:#FFF0F0;}
+.panel-purple{background:#F5EEFF;}
+.char-row{display:flex;align-items:flex-end;gap:8px;}
+.char{font-size:34px;line-height:1;flex-shrink:0;}
+.char-name{font-size:10px;font-weight:700;color:#333;text-align:center;margin-top:2px;}
+.bubble{background:#fff;border:2.5px solid #333;border-radius:14px;padding:7px 11px;font-size:12px;font-weight:700;line-height:1.4;color:#1a0a2e;position:relative;max-width:100%;}
+.bubble.google{background:#E8F0FE;border-color:#4285F4;}
+.bubble.agent{background:#E6F4EA;border-color:#0F9D58;}
+.bubble.warn{background:#FEF7E0;border-color:#F4B400;}
+.bubble.info{background:#F3E8FF;border-color:#9C27B0;}
+.bubble::after{content:'';position:absolute;bottom:-11px;left:14px;border:5px solid transparent;border-top-color:#333;}
+.bubble.right::after{left:auto;right:14px;}
+.bubble.google::after{border-top-color:#4285F4;}
+.bubble.agent::after{border-top-color:#0F9D58;}
+.sfx{font-family:'Bangers',cursive;font-size:28px;letter-spacing:2px;color:#4285F4;text-shadow:2px 2px 0 #fff;text-align:center;padding:4px 0;}
+.narrator{background:#F4B400;border:2px solid #333;border-radius:3px;padding:5px 10px;font-size:11px;font-weight:700;font-style:italic;color:#1a0a2e;margin-top:auto;}
+.back-content{padding:26px 20px;text-align:center;width:100%;}
+.back-ch{font-family:'Bangers',cursive;font-size:1rem;color:#4285F4;letter-spacing:3px;margin-bottom:8px;}
+.back-title{font-family:'Bangers',cursive;font-size:1.7rem;color:#fff;margin-bottom:18px;letter-spacing:1px;line-height:1.2;}
+.back-points{display:flex;flex-direction:column;gap:10px;text-align:left;}
+.back-point{background:rgba(255,255,255,0.06);border-left:4px solid #4285F4;padding:9px 13px;border-radius:0 8px 8px 0;font-size:0.87rem;color:#E2E8F0;line-height:1.5;}
+.back-point strong{color:#F4B400;}
+.controls{display:flex;align-items:center;gap:8px;width:100%;max-width:560px;padding:0 16px 16px;flex-wrap:wrap;justify-content:center;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border:3px solid #fff;border-radius:4px;font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;cursor:pointer;transition:all 0.15s;box-shadow:3px 3px 0 rgba(255,255,255,0.2);}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(255,255,255,0.3);}
+.btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;}
+.btn-prev{background:#4285F4;color:#fff;flex:1;min-width:90px;justify-content:center;}
+.btn-next{background:#0F9D58;color:#fff;flex:1;min-width:90px;justify-content:center;}
+.btn-flip{background:#F4B400;color:#333;flex:1;min-width:90px;justify-content:center;}
+.btn-toc{background:rgba(255,255,255,0.1);color:#fff;font-size:0.85rem;border-color:rgba(255,255,255,0.3);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{display:flex;}
+.modal{background:#1a1060;border:3px solid #4285F4;border-radius:8px;box-shadow:0 0 40px rgba(66,133,244,0.3);padding:22px 18px;max-width:420px;width:100%;max-height:82vh;overflow-y:auto;}
+.modal h2{font-family:'Bangers',cursive;font-size:1.5rem;color:#4285F4;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+.toc-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.06);}
+.toc-item:hover{background:rgba(66,133,244,0.15);}
+.toc-num{width:28px;height:28px;background:#4285F4;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Bangers',cursive;font-size:0.95rem;color:#fff;flex-shrink:0;}
+.toc-ch{font-size:0.7rem;color:#4285F4;font-weight:700;letter-spacing:1px;}
+.toc-sub{font-size:0.88rem;color:#E2E8F0;font-weight:600;}
+.modal-close{width:100%;margin-top:12px;background:transparent;color:#4285F4;border:2px solid #4285F4;border-radius:4px;padding:9px;cursor:pointer;font-family:'Bangers',cursive;font-size:1.1rem;letter-spacing:1px;}
+.hint{font-size:0.72rem;color:rgba(255,255,255,0.3);text-align:center;padding:0 16px 12px;}
+.footer{width:100%;text-align:center;padding:12px;font-size:0.72rem;color:rgba(255,255,255,0.25);border-top:1px solid rgba(255,255,255,0.08);}
+.google-colors{background:linear-gradient(90deg,#4285F4 25%,#EA4335 25%,#EA4335 50%,#FBBC05 50%,#FBBC05 75%,#34A853 75%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>🤖 GEMINI ENTERPRISE</h1>
+  <p>Your AI Teammate at Work — How Google's Agent Platform is Changing Everything</p>
+  <div class="level-badge">⭐ BEGINNER LEVEL</div>
+</div>
+<div class="prog-wrap">
+  <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:7.14%"></div></div>
+  <div class="prog-txt" id="pTxt">1 / 14</div>
+</div>
+<div class="comic-wrap"><div class="book" id="book">
+
+<!-- PAGE 1 -->
+<div class="page active"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🏢</span>CHAPTER 1: MEET YOUR NEW AI TEAMMATE</div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">Our company just said we're getting something called Gemini Enterprise. What even is that?</div></div>
+    <div class="narrator">Amara, a marketing manager at a Lagos tech company, just got an email from IT.</div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Hi Amara! I'm Gem — your Gemini Enterprise AI agent. Think of me as your smartest, fastest, never-sleeping work assistant!</div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Gemini Enterprise is Google's platform for building AI agents — intelligent systems that can do real work tasks automatically.</div>
+    <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:100px;background:#E8F0FE;border:2px solid #4285F4;border-radius:6px;padding:6px;font-size:11px;font-weight:700;text-align:center;color:#1a0a2e;">📝 Write reports</div>
+      <div style="flex:1;min-width:100px;background:#E6F4EA;border:2px solid #0F9D58;border-radius:6px;padding:6px;font-size:11px;font-weight:700;text-align:center;color:#1a0a2e;">📊 Analyse data</div>
+      <div style="flex:1;min-width:100px;background:#FEF7E0;border:2px solid #F4B400;border-radius:6px;padding:6px;font-size:11px;font-weight:700;text-align:center;color:#1a0a2e;">📅 Book meetings</div>
+    </div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 1</div>
+  <div class="back-title">What is Gemini Enterprise?</div>
+  <div class="back-points">
+    <div class="back-point">🤖 <strong>Gemini Enterprise</strong> is Google Cloud's AI platform launched in April 2026 — an end-to-end system for creating, running, and managing AI agents in organisations.</div>
+    <div class="back-point">🔄 It evolved from <strong>Vertex AI</strong>, Google's previous ML platform, into something much bigger — a complete agentic platform where AI agents can actually do work, not just answer questions.</div>
+    <div class="back-point">🏢 <strong>Who uses it?</strong> Any organisation that wants AI to handle repetitive tasks, analyse information, or coordinate complex work processes automatically.</div>
+    <div class="back-point">✅ <strong>The big idea:</strong> Instead of asking AI a question and doing the work yourself, agents take the whole task and complete it — like having a brilliant colleague who never sleeps.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 2 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">📜</span>CHAPTER 2: FROM VERTEX AI TO GEMINI ENTERPRISE</div>
+  <div class="panel panel-purple">
+    <div class="narrator">The story of how Google's AI platform grew up...</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+      <div style="display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #9C27B0;border-radius:6px;padding:8px;">
+        <span style="font-size:20px;">🔬</span>
+        <div><div style="font-size:11px;font-weight:700;color:#9C27B0;">2021 — Vertex AI launches</div>
+        <div style="font-size:11px;color:#333;">A platform for building and training ML models. Powerful, but needed engineers.</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #4285F4;border-radius:6px;padding:8px;">
+        <span style="font-size:20px;">🧠</span>
+        <div><div style="font-size:11px;font-weight:700;color:#4285F4;">2023–2025 — Generative AI wave</div>
+        <div style="font-size:11px;color:#333;">Gemini models added. Anyone could now build AI-powered apps without deep ML expertise.</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#E6F4EA;border:2px solid #0F9D58;border-radius:6px;padding:8px;">
+        <span style="font-size:20px;">🚀</span>
+        <div><div style="font-size:11px;font-weight:700;color:#0F9D58;">April 2026 — Gemini Enterprise Agent Platform</div>
+        <div style="font-size:11px;color:#333;">The next era: full agentic platform. Agents that work autonomously. Enterprise-ready.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">So it got smarter each year until now agents can actually DO things on their own?</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Exactly! Think of it like going from a calculator to a full accountant who works for you 24/7!</div></div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 2</div>
+  <div class="back-title">The Evolution Story</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Vertex AI (2021):</strong> Google's first unified ML platform — powerful for data scientists and engineers but required deep technical skill to use effectively.</div>
+    <div class="back-point"><strong>The Generative AI era:</strong> Models like Gemini made AI accessible to non-engineers. Businesses could build chatbots and AI tools without ML expertise.</div>
+    <div class="back-point"><strong>Gemini Enterprise (2026):</strong> Announced at Google Cloud Next '26, this is the agentic era — AI agents that can plan, execute, and complete multi-step work processes independently.</div>
+    <div class="back-point"><strong>Key shift:</strong> From AI that answers questions to AI that completes tasks. This is the difference between a search engine and a colleague.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 3 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🤖</span>CHAPTER 3: WHAT IS AN AI AGENT?</div>
+  <div class="panel panel-yellow">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble warn">You keep saying "agent." What's the difference between an agent and a normal AI chatbot?</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div class="narrator">Great question! Here's the difference:</div>
+    <div style="display:flex;gap:8px;margin-top:6px;">
+      <div style="flex:1;border:2px solid #DB4437;border-radius:6px;padding:8px;background:#FFF0F0;">
+        <div style="font-size:11px;font-weight:700;color:#DB4437;">💬 CHATBOT</div>
+        <div style="font-size:11px;margin-top:4px;">You ask: "Write a report on Q3 sales."<br/>It answers with text.<br/>You still have to do the rest.</div>
+      </div>
+      <div style="flex:1;border:2px solid #0F9D58;border-radius:6px;padding:8px;background:#E6F4EA;">
+        <div style="font-size:11px;font-weight:700;color:#0F9D58;">🤖 AGENT</div>
+        <div style="font-size:11px;margin-top:4px;">You say: "Prepare Q3 report."<br/>It fetches data, writes, formats, emails it — automatically!</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">I can use tools, access systems, make decisions, and complete whole workflows — not just chat!</div></div>
+    <div class="narrator">Agents are AI that can PLAN → ACT → CHECK → COMPLETE</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 3</div>
+  <div class="back-title">Agents vs Chatbots</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Chatbots</strong> respond to questions with text. They are reactive — you ask, they answer, you do the work.</div>
+    <div class="back-point"><strong>AI Agents</strong> are proactive — given a goal, they plan the steps needed, use tools to execute each step, check the results, and complete the whole task without you doing anything else.</div>
+    <div class="back-point"><strong>What agents can do:</strong> Access databases, send emails, book calendars, run code, browse the web, call APIs, coordinate with other agents — all in service of completing your goal.</div>
+    <div class="back-point"><strong>The key word is autonomy.</strong> Agents operate with enough independence to complete multi-step tasks the way a competent colleague would.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 4 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🧩</span>CHAPTER 4: THE FOUR PARTS OF GEMINI ENTERPRISE</div>
+  <div class="panel panel-blue">
+    <div class="narrator">Gemini Enterprise has four main pieces that work together:</div>
+  </div>
+  <div class="panel panel-green">
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;gap:8px;align-items:center;background:#E8F0FE;border:2px solid #4285F4;border-radius:6px;padding:8px;">
+        <span style="font-size:22px;">🧠</span>
+        <div><div style="font-size:11px;font-weight:700;color:#4285F4;">Gemini Models</div>
+        <div style="font-size:11px;color:#333;">The brains — Gemini 3.5 Flash, Gemini Omni. Think and reason.</div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;background:#E6F4EA;border:2px solid #0F9D58;border-radius:6px;padding:8px;">
+        <span style="font-size:22px;">🔧</span>
+        <div><div style="font-size:11px;font-weight:700;color:#0F9D58;">Agent Builder</div>
+        <div style="font-size:11px;color:#333;">The workshop — where you build and customise your agents.</div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;background:#FEF7E0;border:2px solid #F4B400;border-radius:6px;padding:8px;">
+        <span style="font-size:22px;">🛡️</span>
+        <div><div style="font-size:11px;font-weight:700;color:#e6a800;">Governance Layer</div>
+        <div style="font-size:11px;color:#333;">The rules — security, safety, and accountability controls.</div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;background:#F5EEFF;border:2px solid #9C27B0;border-radius:6px;padding:8px;">
+        <span style="font-size:22px;">📊</span>
+        <div><div style="font-size:11px;font-weight:700;color:#9C27B0;">Data Integration</div>
+        <div style="font-size:11px;color:#333;">The memory — connects agents to your company's data.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Together we are one complete system — not just a chatbot sitting alone!</div></div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 4</div>
+  <div class="back-title">The Four Pillars</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Gemini Models:</strong> The AI brains. Gemini 3.5 Flash is fast and efficient. Gemini Omni understands text, images, audio, and video — any input, any output.</div>
+    <div class="back-point"><strong>Agent Builder:</strong> Low-code and code-based tools to create AI agents. Business teams can build simple agents; engineers can build complex ones.</div>
+    <div class="back-point"><strong>Governance Layer:</strong> The rules engine — who can do what, what data agents can access, how actions are logged. Essential for enterprise trust.</div>
+    <div class="back-point"><strong>Data Integration:</strong> Connects agents to your organisation's data — documents, databases, emails, and third-party systems — so agents work with your real information.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 5 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">⚡</span>CHAPTER 5: GEMINI 3.5 — THE NEW BRAIN</div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">What's this Gemini 3.5 Flash I keep hearing about? Is it a new phone?</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Ha! No — it's Google's latest AI model. It combines being really smart AND really fast. The "Flash" means it responds almost instantly!</div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Gemini 3.5 Flash launched May 2026 — now the default in Gemini Enterprise:</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+      <div style="font-size:11px;font-weight:700;">⚡ Ultra-fast responses for real-time tasks</div>
+      <div style="font-size:11px;font-weight:700;">🌍 Understands text, images, video AND audio</div>
+      <div style="font-size:11px;font-weight:700;">🔗 Takes actions — not just answers questions</div>
+      <div style="font-size:11px;font-weight:700;">🔒 Enterprise security built in from day one</div>
+    </div>
+  </div>
+  <div class="panel panel-purple">
+    <div class="sfx">FLASH!</div>
+    <div class="narrator">From question to completed task in seconds — not hours.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 5</div>
+  <div class="back-title">Gemini 3.5 Flash</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Gemini 3.5 Flash</strong> became the default model in Gemini Enterprise on June 8, 2026 — Google's latest frontier model optimised for speed and action.</div>
+    <div class="back-point"><strong>Multimodal:</strong> It processes any type of input — text, documents, images, audio, video — and produces any type of output. One model for everything.</div>
+    <div class="back-point"><strong>Action-oriented:</strong> Unlike earlier models that just generated text, Gemini 3.5 is designed to take actions — calling APIs, running code, updating systems.</div>
+    <div class="back-point"><strong>Enterprise SLOs:</strong> Service Level Objectives guarantee performance — meaning businesses can rely on it for critical operations, not just experiments.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 6 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🏗️</span>CHAPTER 6: BUILDING YOUR FIRST AGENT</div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">Can I actually build an agent? I'm not a programmer!</div></div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Yes! Gemini Enterprise has a no-code Agent Builder. You describe what you want in plain English!</div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Amara tries it:</div>
+    <div style="background:#fff;border:2px solid #4285F4;border-radius:6px;padding:8px;margin-top:6px;font-size:11px;">
+      <div style="font-weight:700;color:#4285F4;">Agent Builder →</div>
+      <div style="margin-top:4px;color:#333;">"Create an agent that monitors our social media mentions, summarises them every morning at 8am, and emails me the highlights."</div>
+      <div style="margin-top:6px;background:#0F9D58;color:#fff;text-align:center;padding:4px;border-radius:3px;font-weight:700;">✅ Agent created and scheduled!</div>
+    </div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">😲</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">That took 3 minutes! It would have taken my team 3 days!</div></div>
+    <div class="narrator">This is the power of the Agentic Enterprise.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 6</div>
+  <div class="back-title">No-Code Agent Building</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Gemini Enterprise Agent Builder</strong> lets anyone — not just engineers — create AI agents using plain language descriptions of what they want the agent to do.</div>
+    <div class="back-point"><strong>Two modes:</strong> Low-code (drag and drop + natural language) for business users; full code-based development for engineers who need more control.</div>
+    <div class="back-point"><strong>Templates available:</strong> Pre-built agent templates for common tasks — customer service, data analysis, report generation, meeting scheduling — that you customise rather than build from scratch.</div>
+    <div class="back-point"><strong>Test before deploy:</strong> Built-in testing environment so you can verify your agent behaves correctly before it starts doing real work in your organisation.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 7 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🔗</span>CHAPTER 7: AGENTS WORKING TOGETHER</div>
+  <div class="panel panel-blue">
+    <div class="narrator">One agent is powerful. Multiple agents working together are transformational.</div>
+  </div>
+  <div class="panel panel-green">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div class="narrator">Amara's company builds a team of agents:</div>
+      <div style="display:flex;align-items:center;gap:6px;background:#E8F0FE;border-radius:4px;padding:6px;margin-top:4px;">
+        <span style="font-size:18px;">📊</span><span style="font-size:11px;font-weight:700;">DATA AGENT — pulls numbers from databases</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#E6F4EA;border-radius:4px;padding:6px;">
+        <span style="font-size:18px;">✍️</span><span style="font-size:11px;font-weight:700;">WRITER AGENT — turns data into reports</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#FEF7E0;border-radius:4px;padding:6px;">
+        <span style="font-size:18px;">📧</span><span style="font-size:11px;font-weight:700;">COMMS AGENT — distributes to the right people</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#F5EEFF;border-radius:4px;padding:6px;">
+        <span style="font-size:18px;">🛡️</span><span style="font-size:11px;font-weight:700;">GUARD AGENT — checks everything is safe to send</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">We coordinate automatically! The Guard Agent checks before the Comms Agent sends. No human needed to manage us.</div></div>
+    <div class="narrator">This is called multi-agent orchestration.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 7</div>
+  <div class="back-title">Multi-Agent Orchestration</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Multi-agent systems</strong> allow specialised agents to work together on complex tasks — each handling what it does best while coordinating automatically.</div>
+    <div class="back-point"><strong>Orchestrator agents</strong> manage other agents — assigning tasks, collecting results, and making decisions about next steps, like a project manager coordinating a team.</div>
+    <div class="back-point"><strong>Why it matters:</strong> Complex business processes involve many steps and systems. Multi-agent systems mirror real organisational workflows, making automation of whole processes possible.</div>
+    <div class="back-point"><strong>Gemini Enterprise</strong> provides the infrastructure to build, deploy, and monitor these multi-agent systems with full visibility into what each agent is doing.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 8 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🛡️</span>CHAPTER 8: KEEPING AI SAFE AND ACCOUNTABLE</div>
+  <div class="panel panel-red">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble warn">But what if the agent does something wrong? Or sends confidential data somewhere it shouldn't?</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Great question! That's exactly what the Governance Layer handles. Think of it as rules I must follow — always.</div></div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="narrator">Gemini Enterprise Governance controls:</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+      <div style="font-size:11px;font-weight:700;">🔐 Who can use which agents</div>
+      <div style="font-size:11px;font-weight:700;">📋 What data agents can access</div>
+      <div style="font-size:11px;font-weight:700;">📝 Full audit log of every action</div>
+      <div style="font-size:11px;font-weight:700;">🚫 Automatic blocking of unsafe actions</div>
+      <div style="font-size:11px;font-weight:700;">👁️ Real-time monitoring dashboard</div>
+    </div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Every single thing I do is logged. Your IT team can see everything — and stop me if needed.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 8</div>
+  <div class="back-title">Governance and Safety</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Agent Registry:</strong> A central catalogue of all agents in your organisation — what they do, who built them, what permissions they have. No shadow agents operating unchecked.</div>
+    <div class="back-point"><strong>Agent Gateway:</strong> Every agent action passes through the gateway, which enforces policies — blocking unauthorised data access, flagging unusual behaviour, logging everything.</div>
+    <div class="back-point"><strong>Audit logs:</strong> A complete record of every action every agent takes — essential for compliance, security investigations, and building organisational trust in AI systems.</div>
+    <div class="back-point"><strong>Human oversight:</strong> For high-stakes decisions, agents can be configured to pause and request human approval before proceeding. AI autonomy with appropriate human control.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 9 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">💼</span>CHAPTER 9: REAL JOBS GEMINI ENTERPRISE DOES</div>
+  <div class="panel panel-green">
+    <div class="narrator">Let's see Gem in action across different departments:</div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><span style="font-size:22px;">💰</span><div><div style="font-size:11px;font-weight:700;color:#4285F4;">FINANCE TEAM</div>
+    <div class="bubble google" style="font-size:11px;">"Gem, prepare our monthly expense report." → Agent pulls data from 6 systems, checks for anomalies, generates report, flags unusual items for review. Done in 4 minutes.</div></div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="char-row"><span style="font-size:22px;">🛒</span><div><div style="font-size:11px;font-weight:700;color:#e6a800;">CUSTOMER SERVICE</div>
+    <div class="bubble warn" style="font-size:11px;">"Gem, handle tier-1 customer queries." → Agent reads customer history, responds to common questions, escalates complex issues to humans. 80% resolved automatically.</div></div></div>
+  </div>
+  <div class="panel panel-purple">
+    <div class="char-row"><span style="font-size:22px;">🔍</span><div><div style="font-size:11px;font-weight:700;color:#9C27B0;">LEGAL TEAM</div>
+    <div class="bubble info" style="font-size:11px;">"Gem, review these 200 contracts for non-standard clauses." → Agent reads all contracts, flags deviations from standard terms, summarises risks. 3 hours instead of 3 weeks.</div></div></div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 9</div>
+  <div class="back-title">Real-World Applications</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Finance:</strong> Automated reporting, expense analysis, anomaly detection, budget forecasting — tasks that previously required days of manual data work.</div>
+    <div class="back-point"><strong>Customer service:</strong> AI agents handle routine queries 24/7, escalating to humans only when needed. Faster response times, consistent quality, lower cost.</div>
+    <div class="back-point"><strong>Legal and compliance:</strong> Document review, contract analysis, regulatory monitoring — AI reads hundreds of documents at human-level understanding in minutes.</div>
+    <div class="back-point"><strong>HR and operations:</strong> Onboarding automation, policy Q&A, meeting scheduling, performance data analysis — freeing people for higher-value work.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 10 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🌍</span>CHAPTER 10: GEMINI ENTERPRISE IN AFRICA</div>
+  <div class="panel panel-blue">
+    <div class="narrator">What does Gemini Enterprise mean for African businesses?</div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">👨🏾‍💼</div><div class="char-name">CEO LAGOS</div></div>
+    <div class="bubble agent">Our fintech startup can now have the same AI capabilities as a global bank — without the huge IT team!</div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div style="display:flex;flex-direction:column;gap:5px;">
+      <div style="font-size:11px;font-weight:700;color:#333;">🌍 Why it matters for Africa:</div>
+      <div style="font-size:11px;">✅ Levels the playing field — small African businesses get enterprise AI</div>
+      <div style="font-size:11px;">✅ Works in multiple languages including local languages</div>
+      <div style="font-size:11px;">✅ Cloud-based — no expensive local infrastructure needed</div>
+      <div style="font-size:11px;">✅ Automates tasks that are hard to hire for in smaller markets</div>
+      <div style="font-size:11px;">✅ Google Cloud Africa regions mean lower latency</div>
+    </div>
+  </div>
+  <div class="panel panel-purple">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble info">Africa's digital economy is growing fastest in the world. Gemini Enterprise helps businesses here compete globally from day one!</div></div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 10</div>
+  <div class="back-title">Africa and the Agentic Era</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Democratising enterprise AI:</strong> Previously, only large multinationals could afford the teams needed to build AI systems. Gemini Enterprise makes this accessible to African SMEs and startups.</div>
+    <div class="back-point"><strong>Leapfrogging opportunity:</strong> Just as Africa leapfrogged landlines to mobile, African businesses can leapfrog legacy IT systems and go directly to AI-native operations.</div>
+    <div class="back-point"><strong>Local language support:</strong> Google's investment in African language AI means agents can work in Hausa, Yoruba, Igbo, Swahili, and other languages — not just English.</div>
+    <div class="back-point"><strong>Economic impact:</strong> Automating routine tasks frees African workers for higher-value creative and relationship work — the areas where human judgement matters most.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 11 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🔒</span>CHAPTER 11: YOUR DATA STAYS YOURS</div>
+  <div class="panel panel-red">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble warn">I'm worried about privacy. Does Google read all our company data that Gem uses?</div></div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble google">Your data is not used to train Google's models. It stays in your organisation's Google Cloud environment.</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div class="narrator">Gemini Enterprise data protections:</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+      <div style="font-size:11px;font-weight:700;">🔒 Data stays in your chosen region (US / EU / Global)</div>
+      <div style="font-size:11px;font-weight:700;">🚫 Your data is NOT used to train Google AI models</div>
+      <div style="font-size:11px;font-weight:700;">🛡️ Enterprise-grade encryption at rest and in transit</div>
+      <div style="font-size:11px;font-weight:700;">📍 Data residency commitments available</div>
+      <div style="font-size:11px;font-weight:700;">⚖️ Compliant with GDPR and major data regulations</div>
+    </div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Your company's secrets stay secret. Gemini Enterprise is designed for regulated industries.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 11</div>
+  <div class="back-title">Data Privacy</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Data isolation:</strong> Your organisation's data is completely separate from other customers. Gemini Enterprise runs in your own Google Cloud environment with your own security controls.</div>
+    <div class="back-point"><strong>No training use:</strong> Unlike consumer AI products, enterprise data is never used to improve Google's models. Your confidential information stays confidential.</div>
+    <div class="back-point"><strong>Data residency:</strong> Choose where your data is stored — US, EU, or other regions — to meet local regulatory requirements including Nigeria's NDPA.</div>
+    <div class="back-point"><strong>Security certifications:</strong> Gemini Enterprise holds ISO 27001, SOC 2, and other security certifications — giving regulated industries the assurance they need.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 12 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">💰</span>CHAPTER 12: HOW MUCH DOES IT COST?</div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">This all sounds amazing. But our CFO will ask — what does it cost?</div></div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="narrator">Gemini Enterprise pricing (2026):</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+      <div style="background:#E8F0FE;border:2px solid #4285F4;border-radius:6px;padding:8px;">
+        <div style="font-size:11px;font-weight:700;color:#4285F4;">📦 Business Edition</div>
+        <div style="font-size:11px;color:#333;">From ~$21/user/month · Core agent capabilities · Standard models</div>
+      </div>
+      <div style="background:#E6F4EA;border:2px solid #0F9D58;border-radius:6px;padding:8px;">
+        <div style="font-size:11px;font-weight:700;color:#0F9D58;">🏢 Enterprise Edition</div>
+        <div style="font-size:11px;color:#333;">Custom pricing · Full platform · Advanced governance · Dedicated support</div>
+      </div>
+      <div style="background:#FEF7E0;border:2px solid #F4B400;border-radius:6px;padding:8px;">
+        <div style="font-size:11px;font-weight:700;color:#e6a800;">☁️ Pay-as-you-go</div>
+        <div style="font-size:11px;color:#333;">API access · Pay per token/query · Good for developers and startups</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-green">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble agent">Calculate the time I save your team — usually I pay for myself in the first month!</div></div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 12</div>
+  <div class="back-title">Pricing and ROI</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Business Edition:</strong> Starting around $21/user/month — accessible for small and medium organisations wanting AI agent capabilities without a large upfront investment.</div>
+    <div class="back-point"><strong>Enterprise Edition:</strong> Custom pricing for large organisations needing advanced governance, dedicated capacity, custom SLAs, and premium support.</div>
+    <div class="back-point"><strong>ROI calculation:</strong> A single agent that saves 2 hours per employee per day across a 50-person team saves 100 hours daily — worth far more than the subscription cost.</div>
+    <div class="back-point"><strong>Free tier:</strong> Google AI Studio provides free access to Gemini models for developers building and testing before committing to enterprise pricing.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 13 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🔭</span>CHAPTER 13: THE FUTURE — GEMINI OMNI</div>
+  <div class="panel panel-purple">
+    <div class="narrator">Beyond Gemini 3.5 Flash — meet Gemini Omni, the next frontier...</div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">🤖</div><div class="char-name">GEM</div></div>
+    <div class="bubble google">Gemini Omni is a leap forward — it understands ANY input and generates ANY output. Text, images, audio, video — all in one model!</div></div>
+  </div>
+  <div class="panel panel-green">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="font-size:11px;font-weight:700;margin-bottom:2px;">🚀 What Gemini Omni can do:</div>
+      <div style="font-size:11px;">👁️ Watch a video and write a report about it</div>
+      <div style="font-size:11px;">🎙️ Listen to a meeting and generate action items</div>
+      <div style="font-size:11px;">📸 Look at a chart and explain the business insight</div>
+      <div style="font-size:11px;">🎬 Create a video summary from text instructions</div>
+      <div style="font-size:11px;">🌐 Understand world context — not just documents</div>
+    </div>
+  </div>
+  <div class="panel panel-yellow">
+    <div class="char-row"><div><div class="char">😮</div><div class="char-name">AMARA</div></div>
+    <div class="bubble warn">It can watch our product demos and write the sales pitch automatically?!</div></div>
+    <div class="narrator">Welcome to the future of work.</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">CHAPTER 13</div>
+  <div class="back-title">Gemini Omni</div>
+  <div class="back-points">
+    <div class="back-point"><strong>Gemini Omni</strong> was announced at Google I/O 2026 as "a leap forward in world understanding, multimodality, and editing" — generating any output from any input.</div>
+    <div class="back-point"><strong>True multimodality:</strong> Not just reading different input types separately — Gemini Omni understands the relationships between text, image, audio, and video simultaneously.</div>
+    <div class="back-point"><strong>World understanding:</strong> Beyond document processing, Omni is designed to understand context in the way humans do — combining visual, auditory, and textual information.</div>
+    <div class="back-point"><strong>Enterprise impact:</strong> Unlocks automation of tasks that previously required exclusively human perception — watching presentations, listening to customer calls, analysing video content.</div>
+  </div>
+</div></div>
+</div></div>
+
+<!-- PAGE 14 -->
+<div class="page"><div class="page-inner">
+<div class="page-front"><div class="comic-page">
+  <div class="ch-header"><span class="ch-icon">🎓</span>FINAL CHAPTER: YOUR AGENTIC ENTERPRISE GUIDE</div>
+  <div class="panel panel-green">
+    <div class="narrator">🏆 What Amara learned — your 5-step guide to Gemini Enterprise:</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+      <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:1.2rem;">1️⃣</span><span style="font-size:12px;font-weight:700;">UNDERSTAND — Agents do work, not just answer questions</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:1.2rem;">2️⃣</span><span style="font-size:12px;font-weight:700;">START SMALL — Build one agent for your most repetitive task</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:1.2rem;">3️⃣</span><span style="font-size:12px;font-weight:700;">TRUST BUT VERIFY — Use governance to stay in control</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:1.2rem;">4️⃣</span><span style="font-size:12px;font-weight:700;">SCALE — Connect agents into powerful workflows</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:1.2rem;">5️⃣</span><span style="font-size:12px;font-weight:700;">STAY HUMAN — AI handles routine; you handle the important</span></div>
+    </div>
+  </div>
+  <div class="panel panel-blue">
+    <div class="char-row"><div><div class="char">👩🏾</div><div class="char-name">AMARA</div></div>
+    <div class="bubble google">I went from scared of AI to having my own agent team in one week!</div></div>
+  </div>
+  <div class="panel" style="background:linear-gradient(135deg,#4285F4,#0F9D58,#F4B400,#DB4437);padding:16px;text-align:center;">
+    <div style="font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:2px;color:#fff;">THE AGENTIC ERA IS HERE.</div>
+    <div style="font-size:0.8rem;color:rgba(255,255,255,0.9);margin-top:6px;">Written by Gbemisola Esho · Google Developer Expert · 2026</div>
+  </div>
+</div></div>
+<div class="page-back"><div class="back-content">
+  <div class="back-ch">FINAL CHAPTER</div>
+  <div class="back-title">You Are Agent-Ready!</div>
+  <div class="back-points">
+    <div class="back-point">🤖 <strong>Gemini Enterprise</strong> is Google's end-to-end AI agent platform — launched April 2026 as the evolution of Vertex AI into the agentic era.</div>
+    <div class="back-point">⚡ <strong>Gemini 3.5 Flash</strong> is the default model — fast, multimodal, action-oriented, and enterprise-secure from day one.</div>
+    <div class="back-point">🛡️ <strong>Governance built in</strong> — every agent action is logged, controlled, and auditable. AI autonomy with human accountability.</div>
+    <div class="back-point">🌍 <strong>Your opportunity:</strong> The agentic era levels the playing field. Any organisation — anywhere in the world — can now deploy enterprise-grade AI agents.</div>
+  </div>
+</div></div>
+</div></div>
+
+</div></div>
+<div class="controls">
+  <button class="btn btn-prev" id="btnPrev" onclick="nav(-1)" disabled>◀ PREV</button>
+  <button class="btn btn-flip" onclick="flip()">🔄 FLIP</button>
+  <button class="btn btn-toc" onclick="openTOC()">📋</button>
+  <button class="btn btn-next" id="btnNext" onclick="nav(1)">NEXT ▶</button>
+</div>
+<p class="hint">Flip to see key lessons · Arrow keys or swipe to turn · Space to flip</p>
+<div class="modal-overlay" id="tocModal" onclick="closeTOC(event)">
+  <div class="modal">
+    <h2>📋 CONTENTS</h2>
+    <div id="tocList"></div>
+    <button class="modal-close" onclick="closeTOC()">CLOSE</button>
+  </div>
+</div>
+<div class="footer">Gemini Enterprise: Your AI Teammate · By Gbemisola Esho · 2026 · Beginner Level</div>
+<script>
+const CH=[
+  {n:"Ch.1",t:"Meet Your AI Teammate"},{n:"Ch.2",t:"From Vertex AI to Gemini Enterprise"},
+  {n:"Ch.3",t:"What is an AI Agent?"},{n:"Ch.4",t:"The Four Parts"},
+  {n:"Ch.5",t:"Gemini 3.5 Flash"},{n:"Ch.6",t:"Building Your First Agent"},
+  {n:"Ch.7",t:"Agents Working Together"},{n:"Ch.8",t:"Safety and Governance"},
+  {n:"Ch.9",t:"Real Jobs Agents Do"},{n:"Ch.10",t:"Gemini Enterprise in Africa"},
+  {n:"Ch.11",t:"Your Data Stays Yours"},{n:"Ch.12",t:"Pricing and ROI"},
+  {n:"Ch.13",t:"The Future — Gemini Omni"},{n:"Final",t:"Your Agentic Enterprise Guide"},
+];
+let cur=0;const tot=14;
+const allP=document.querySelectorAll('.page');
+function ui(){
+  allP.forEach((p,i)=>p.classList.toggle('active',i===cur));
+  document.getElementById('btnPrev').disabled=cur===0;
+  document.getElementById('btnNext').disabled=cur===tot-1;
+  document.getElementById('pFill').style.width=((cur+1)/tot*100)+'%';
+  document.getElementById('pTxt').textContent=(cur+1)+' / '+tot;
+  const inn=allP[cur].querySelector('.page-inner');
+  if(inn)inn.classList.remove('flipped');
+}
+function nav(d){const n=cur+d;if(n>=0&&n<tot){cur=n;ui();}}
+function flip(){const inn=allP[cur].querySelector('.page-inner');if(inn)inn.classList.toggle('flipped');}
+function openTOC(){
+  document.getElementById('tocList').innerHTML=CH.map((c,i)=>`
+    <div class="toc-item" onclick="goto(${i})">
+      <div class="toc-num">${i+1}</div>
+      <div><div class="toc-ch">${c.n}</div><div class="toc-sub">${c.t}</div></div>
+    </div>`).join('');
+  document.getElementById('tocModal').classList.add('open');
+}
+function closeTOC(e){if(!e||e.target===document.getElementById('tocModal'))document.getElementById('tocModal').classList.remove('open');}
+function goto(i){cur=i;ui();document.getElementById('tocModal').classList.remove('open');}
+let sx=0;
+document.getElementById('book').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;});
+document.getElementById('book').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)nav(dx<0?1:-1);});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nav(1);if(e.key==='ArrowLeft')nav(-1);if(e.key===' '){e.preventDefault();flip();}});
+ui();
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Beginner done: $(wc -c < /mnt/user-data/outputs/gemini_enterprise_beginner.html) bytes"
+
+
