@@ -1,5 +1,2 @@
- #What is Gemini Enterprise!
- #Defines and explains simply
- #Localized  flippable interractive comic 
-
----
+A flippale comic talking about Gemini Enterprise
+Localized comic explaining in the simplest way.
