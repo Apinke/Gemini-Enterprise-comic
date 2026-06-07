@@ -71,4 +71,4 @@ Licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) — free
 **Gbemisola Esho** — Google Developer Expert (GDE), WTM Ambassador, founder of [Connectobridge](https://connectobridge.com).
 
 
-<p align="center"><img src="afralo_logo.jpeg" alt="AFRALO" height="50"/></p>
+
